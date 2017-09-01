@@ -38,6 +38,6 @@ enum Suit
 
 struct Card
 {
-    Rank rank;
-    Suit suit;
+    const Rank rank;
+    const Suit suit;
 };
