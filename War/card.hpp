@@ -40,9 +40,15 @@ enum Suit
 class Card
 {
 public:
-    Card()
-    : rank(), suit()
-    { }
+    // Creates a "not a card" abstraction/
+    //Card()
+    //: rank(), suit()
+    //{ }
+    //Possibly better. Creats a uninitialized abstradction
+    //Card()
+    //{ }
+    //Good
+    Card() = default;
     
     Card(Rank r, Suit s)
        : rank(r), suit(s) // member initializer list
