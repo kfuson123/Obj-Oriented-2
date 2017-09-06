@@ -36,8 +36,19 @@ enum Suit
     Spades,
 };
 
-struct Card
+//A playing card (in a standard deck) is a pair of rank and suit (see enums above).
+class Card
 {
-    const Rank rank;
-    const Suit suit;
+public:
+    Card()
+    : rank(), suit()
+    { }
+    
+    Card(Rank r, Suit s)
+       : rank(r), suit(s) // member initializer list
+    { }
+private:
+     Rank rank;
+     Suit suit;
 };
+

@@ -1,4 +1,7 @@
 #include <iostream>
+#include <iomanip>
+#include <vector>
+
 #include "card.hpp"
 
 int main()
@@ -17,17 +20,11 @@ int main()
 
     Card c1{Ace, Spades};
     Card c2{Four, Hearts};
-    Card c3(Three, Clubs);
-    Card c4(Two, Diamonds);
-    Card c5(Five, Spades);
-    Card c6(Jack, Hearts);
-    Card c7(Queen, Diamonds);
-    Card c8(King, Clubs);
-    Card c9(Ten, Spades);
-    Card c10(Eight, Hearts);
 
-
-
+    Card c;
+    
+    std::vector<Card> deck(52);
+    
 
 
 }
