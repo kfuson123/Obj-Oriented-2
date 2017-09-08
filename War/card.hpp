@@ -53,8 +53,26 @@ public:
     Card() = default;
     // Construct a card with a rank and suit.
     Card(Rank r, Suit s)
-       : rank(r), suit(s) // member initializer list
+        : rank(r), suit(s) // member initializer list
     { }
+    /*
+    // Copy consturctor.
+    Card(const Card& c)
+        : rank(c.rank), (c.suit)
+    { }
+    
+    // Copy assignment operator
+    Card& operator=(const Card& c)
+    {
+        rank = c.rank;
+        suit = c.suit;
+        return *this;
+    }
+    */
+    
+    //Accessor functions.
+    Rank get_rank() const { return rank;}
+    Suit get_suit() const { return suit;}
     
 private:
      Rank rank;
