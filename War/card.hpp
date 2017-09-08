@@ -44,15 +44,18 @@ public:
     //Card()
     //: rank(), suit()
     //{ }
+    
     //Possibly better. Creats a uninitialized abstradction
     //Card()
     //{ }
+    
     //Good
     Card() = default;
-    
+    // Construct a card with a rank and suit.
     Card(Rank r, Suit s)
        : rank(r), suit(s) // member initializer list
     { }
+    
 private:
      Rank rank;
      Suit suit;
