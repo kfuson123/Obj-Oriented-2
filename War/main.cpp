@@ -1,6 +1,8 @@
 #include <iostream>
 #include <iomanip>
 #include <vector>
+#include <algorithm>
+
 
 #include "card.hpp"
 
@@ -20,13 +22,13 @@ int main()
     //Initialized some cards
     Card c1{Ace, Spades};
     Card c2{Four, Hearts};
-    
+
     //Declaration, invokes a constuctor to initialize an object (c3)
     Card c3 = c1;
-    
+
     //Assignment(expression)
     c3 = c2;
-    
+
     // We should be able to do this.
     Card c;
     // Create a deck of cards.
@@ -40,7 +42,14 @@ int main()
         }
     }
     for (Card c : deck) {
-        std::cout << c.get_rank() << " " << c.get_suit() << "\n";
+        std::cout << c.get_rank() << " "  << c.get_suit() << "\n";
     }
+
+    std::random_shuffle(deck.begin(), deck.end());
+    std::cout << "After shuffle\n";
+    std::cout << c.get_rank() << " " << c.get_suit() << "\n";
+
+
+
 
 }
