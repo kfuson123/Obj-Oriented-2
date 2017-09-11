@@ -7,3 +7,15 @@
 // Suits of a card are:
 // hearts, diamonds, clubs, spades
 
+#include "card.hpp"
+#inlcude <iostream>
+
+std::ostream& operator<<(std::ostream& os, Rank r)
+{
+    switch(r){
+        case Ace:
+            os << "A";
+            break;
+    }
+    return os;
+}

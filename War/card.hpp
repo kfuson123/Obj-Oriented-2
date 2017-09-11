@@ -2,6 +2,7 @@
 // All rights reserved
 
 #include <utility>
+#include <iosfwd>
 
 // Ranks of a card:
 // ace, 2-10, jack, king, and queen.
@@ -36,7 +37,7 @@ enum Suit
     Spades,
 };
 
-//A playing card (in a standard deck) is a pair of rank and suit (see enums above).
+    // A playing card (in a standard deck) is a pair of rank and suit (see enums above).
 class Card
 {
 public:
@@ -45,11 +46,11 @@ public:
     //: rank(), suit()
     //{ }
     
-    //Possibly better. Creats a uninitialized abstradction
+    // Possibly better. Creats a uninitialized abstradction
     //Card()
     //{ }
     
-    //Good
+    // Good
     Card() = default;
     // Construct a card with a rank and suit.
     Card(Rank r, Suit s)
@@ -70,12 +71,31 @@ public:
     }
     */
     
-    //Accessor functions.
+    // Accessor functions.
+    // Returns rank of the card
     Rank get_rank() const { return rank;}
+    // Returns suit of the card
     Suit get_suit() const { return suit;}
+
+    // Mutator or modifier functions
+    // Don't provide mutators if they're just assignment.
+    // Prefer to make things public
+    /*
+    void set_rank(Rank r) {
+        rank=r;
+    }
+    void set_suit(Suit r) {
+        suit=s;
+    }
+    */
+
     
 private:
      Rank rank;
      Suit suit;
 };
+
+std::ostream& operator<<(std::ostream& os, Card c);
+std::ostream& operator<<(std::ostream& os, Rank r);
+std::ostream& operator<<(std::ostream& os, Suit s);
 

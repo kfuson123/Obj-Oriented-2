@@ -34,8 +34,8 @@ int main()
     // Create a deck of cards.
     std::vector<Card> deck;
     deck.reserve(52);
-    for (int r = Ace; r<= King; ++r){
-        for (int s = Hearts; s<= Spades; ++s){
+    for (int s = Hearts; s<= Spades; ++s){
+        for (int r = Ace; r<= King; ++r){
             Card c{static_cast<Rank>(r), static_cast<Suit>(s)};
             deck.push_back(c);
             //Creates a card.
@@ -45,10 +45,11 @@ int main()
         std::cout << c.get_rank() << " "  << c.get_suit() << "\n";
     }
 
+    /*
     std::random_shuffle(deck.begin(), deck.end());
     std::cout << "After shuffle\n";
     std::cout << c.get_rank() << " " << c.get_suit() << "\n";
-
+     */
 
 
 
