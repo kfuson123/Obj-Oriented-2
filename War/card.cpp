@@ -8,9 +8,18 @@
 // hearts, diamonds, clubs, spades
 
 #include <iostream>
+#include "card.hpp"
+bool operator==(Card a, Card b)
+{
+	return false;
+}
 
-std::ostream&
-operator<<(std::ostream& os, Rank r)
+bool operator!=(Card a, Card b)
+{
+
+}
+
+std::ostream& operator<<(std::ostream& os, Rank r)
 {
     switch (r) {
         case Ace:
@@ -56,28 +65,46 @@ operator<<(std::ostream& os, Rank r)
     return os;
 }
 
-std::ostream&
-operator<<(std::ostream& os, Suit s)
+std::ostream& operator<<(std::ostream& os, Suit s)
 {
     switch (s) {
         case Hearts:
-            os << 'H';
+           // os << 'H';
+        	os << '\u2665';
             break;
         case Diamonds:
-            os << 'D';
+            os << '\u2666';
             break;
         case Clubs:
-            os << 'C';
+            os << '\u2663';
             break;
         case Spades:
-            os << 'S';
+            os << '\u2660';
             break;
     }
     return os;
 }
 
-std::ostream& 
-operator<<(std::ostream& os, Card c)
+// int card_value(Card c)
+// {
+// 	return (c.get_suit() << 4) | c.get_rank();
+// }
+
+// constexpr int card_value(Suit s, Rank r)
+// {
+// 	return (s << 4) | r;
+// }
+
+// const char* card_face(Card c)
+// {
+// 	switch (card_value(c)){
+// 		case card_value(Spades, Ace): return '\U0001f0a1';
+// 	}
+// }
+
+std::ostream&  operator<<(std::ostream& os, Card c)
 {
+	// return os << card.face(c);
     return os << c.get_rank() << c.get_suit();
+
 }
