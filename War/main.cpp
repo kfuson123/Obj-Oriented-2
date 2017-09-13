@@ -25,7 +25,6 @@ int main()
 
     //Declaration, invokes a constuctor to initialize an object (c3)
     Card c3 = c1;
-
     //Assignment(expression)
     c3 = c2;
 
