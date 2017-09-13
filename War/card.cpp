@@ -11,12 +11,12 @@
 #include "card.hpp"
 bool operator==(Card a, Card b)
 {
-	return false;
+	return a.get_rank() == b.get_rank() && a.get_suit() == b.get_suit();
 }
 
 bool operator!=(Card a, Card b)
 {
-
+	return !(a == b);
 }
 
 std::ostream& operator<<(std::ostream& os, Rank r)
