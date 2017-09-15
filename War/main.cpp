@@ -6,8 +6,34 @@
 
 #include "card.hpp"
 
+std::random_device rng;
+std::minstd_rand prng;
+
 int main()
 {
+	prng.seed(rng());
+
+
+	std::vector<Card> deck;
+    deck.reserve(52);
+    for (int s = Hearts; s<= Spades; ++s){
+        for (int r = Ace; r<= King; ++r){
+            Card c{static_cast<Rank>(r), static_cast<Suit>(s)};
+            deck.push_back(c);
+            //Creates a card.
+        }
+    }
+    for (Card c : deck) {
+        std::cout << c.get_rank() << " "  << c.get_suit() << "\n";
+    }
+
+    std::shuffle(deck.begin(), deck.end(), prng;
+    for (Card c : deck) {
+        std::cout << c.get_rank() << " "  << c.get_suit() << "\n";
+    }
+
+    std::sort(deck.first(), deck.last());
+
     // Rank r1 = Two;
     // Rank r2 = Ace;
     // std::cout << (r1 == r2) << "\n";
@@ -29,27 +55,6 @@ int main()
     // c3 = c2;
 
     // We should be able to do this.
-    Card c;
+    // Card c;
     // Create a deck of cards.
-    std::vector<Card> deck;
-    deck.reserve(52);
-    for (int s = Hearts; s<= Spades; ++s){
-        for (int r = Ace; r<= King; ++r){
-            Card c{static_cast<Rank>(r), static_cast<Suit>(s)};
-            deck.push_back(c);
-            //Creates a card.
-        }
-    }
-    for (Card c : deck) {
-        std::cout << c.get_rank() << " "  << c.get_suit() << "\n";
-    }
-
-    /*
-    std::random_shuffle(deck.begin(), deck.end());
-    std::cout << "After shuffle\n";
-    std::cout << c.get_rank() << " " << c.get_suit() << "\n";
-     */
-
-
-
 }
