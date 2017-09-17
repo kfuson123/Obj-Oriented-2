@@ -9,13 +9,33 @@
 std::random_device rng;
 std::minstd_rand prng;
 
+void print_deck(const std::vector<Card>& deck)
+{
+  // Range-base for loop.
+  int i = 1;
+  for (Card c : deck) {
+    std::cout << c << ' ';
+    if (i % 13 == 0) {
+      std::cout << '\n';
+      i = 0;
+    }
+    ++i;
+  }
+  std::cout << '\n';
+}
+
+bool card_greater(Card a, Card b) {
+  return a > b;
+}
+
+
 int main()
 {
 	prng.seed(rng());
 
 
 	std::vector<Card> deck;
-    deck.reserve(52);
+    deck.reserve5(52);
     for (int s = Hearts; s<= Spades; ++s){
         for (int r = Ace; r<= King; ++r){
             Card c{static_cast<Rank>(r), static_cast<Suit>(s)};
@@ -23,16 +43,15 @@ int main()
             //Creates a card.
         }
     }
-    for (Card c : deck) {
-        std::cout << c.get_rank() << " "  << c.get_suit() << "\n";
-    }
+     print_deck(deck);
 
-    std::shuffle(deck.begin(), deck.end(), prng;
-    for (Card c : deck) {
-        std::cout << c.get_rank() << " "  << c.get_suit() << "\n";
-    }
 
-    std::sort(deck.first(), deck.last());
+    std::shuffle(deck.begin(), deck.end(), prng);
+      print_deck(deck);
+
+
+
+    //std::sort(deck.begin(), deck.end());
 
     // Rank r1 = Two;
     // Rank r2 = Ace;

@@ -23,6 +23,7 @@ enum Rank  // Enumeration type
     Six,
     Seven,
     Eight,
+    Nine,
     Ten,
     Jack,
     Queen,
@@ -45,11 +46,11 @@ public:
     //Card()
     //: rank(), suit()
     //{ }
-    
+
     // Possibly better. Creats a uninitialized abstradction
     //Card()
     //{ }
-    
+
     // Good
     Card() = default;
     // Construct a card with a rank and suit.
@@ -61,7 +62,7 @@ public:
     Card(const Card& c)
         : rank(c.rank), (c.suit)
     { }
-    
+
     // Copy assignment operator
     Card& operator=(const Card& c)
     {
@@ -70,7 +71,7 @@ public:
         return *this;
     }
     */
-    
+
     // Accessor functions.
     // Returns rank of the card
     Rank get_rank() const { return rank;}
@@ -89,13 +90,13 @@ public:
     }
     */
 
-    
+
 private:
      Rank rank;
      Suit suit;
 };
 
-// Equality comparison 
+// Equality comparison
 bool operator==(Card a, Card b);
 bool operator!=(Card a, Card b);
 

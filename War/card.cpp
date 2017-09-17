@@ -38,7 +38,7 @@ bool operator<=(Card a, Card b)
 }
 bool operator>=(Card a, Card b)
 {
-	return 
+	return !(a < b);
 }
 std::ostream& operator<<(std::ostream& os, Rank r)
 {
@@ -90,17 +90,16 @@ std::ostream& operator<<(std::ostream& os, Suit s)
 {
     switch (s) {
         case Hearts:
-           // os << 'H';
-        	os << '\u2665';
+           os << 'H';
             break;
         case Diamonds:
-            os << '\u2666';
+            os << 'D';
             break;
         case Clubs:
-            os << '\u2663';
+            os << 'C';
             break;
         case Spades:
-            os << '\u2660';
+            os << 'S';
             break;
     }
     return os;
