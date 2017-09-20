@@ -2,22 +2,19 @@
 
 #include <iostream>
 
-bool
-operator==(Card a, Card b)
+bool operator==(Card a, Card b)
 {
   return a.get_rank() == b.get_rank() &&
          a.get_suit() == b.get_suit();
 }
 
-bool
-operator!=(Card a, Card b)
+bool operator!=(Card a, Card b)
 {
   return !(a == b);
 }
 
 
-bool
-operator<(Card a, Card b)
+bool operator<(Card a, Card b)
 {
   if (a.get_suit() < b.get_suit())
     return true;
@@ -26,28 +23,25 @@ operator<(Card a, Card b)
   return a.get_rank() < b.get_rank();
 }
 
-bool
-operator>(Card a, Card b)
+bool operator>(Card a, Card b)
 {
   return b < a;
 }
 
-bool
-operator<=(Card a, Card b)
+bool operator<=(Card a, Card b)
 {
   return !(b < a);
 }
 
-bool
-operator>=(Card a, Card b)
+bool operator>=(Card a, Card b)
 {
   return !(a < b);
 }
 
-std::ostream&
-operator<<(std::ostream& os, Rank r)
+std::ostream& operator<<(std::ostream& os, Rank r)
 {
-  switch (r) {
+  switch (r) 
+  {
     case Ace:
       os << 'A';
       break;
@@ -91,10 +85,10 @@ operator<<(std::ostream& os, Rank r)
   return os;
 }
 
-std::ostream&
-operator<<(std::ostream& os, Suit s)
+std::ostream& operator<<(std::ostream& os, Suit s)
 {
-  switch (s) {
+  switch (s) 
+  {
     case Hearts:
       os << 'H';
       break;
@@ -111,8 +105,7 @@ operator<<(std::ostream& os, Suit s)
   return os;
 }
 
-std::ostream& 
-operator<<(std::ostream& os, Card c)
+std::ostream& operator<<(std::ostream& os, Card c)
 {
   return os << c.get_rank() << c.get_suit();
 }
