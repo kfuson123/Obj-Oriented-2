@@ -96,6 +96,7 @@ private:
      Suit suit;
 };
 
+
 // Equality comparison
 bool operator==(Card a, Card b);
 bool operator!=(Card a, Card b);

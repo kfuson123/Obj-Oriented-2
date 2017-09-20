@@ -10,6 +10,7 @@ struct Options
 };
 struct Game
 {
+	Options options;
 	Deck deck;
 	Player p1;
 	Player p2;

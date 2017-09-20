@@ -64,6 +64,12 @@ int main()
 {
   prng.seed(rng());
 
+  Deck d1 = make_standard_deck();
+  Deck d2 = make_standard_deck();
+  Deck d3 = make_combinded_deck(d1, d2);
+
+  shuffle(d3);
+
   constexpr int runs = 10'000;
   int total = 0;
   for(int i = 0; i < runs; ++i);
