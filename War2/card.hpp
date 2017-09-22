@@ -27,37 +27,55 @@ enum Suit
   Spades,
 };
 
-/// Represents the values of (suited) cards.
-class Card
+enum Color
 {
-public:
-  Card() = default;
+  Black,
+  Red,
+}
 
-  Card(Rank r, Suit s)
-    : rank(r), suit(s) // member initializer list
-  { }
-
-  // Returns the rank of the card.
-  Rank get_rank() const { return rank; }
-
-  // Returns the suit of the card.
-  Suit get_suit() const { return suit; }
-
-private:
+// Represents the values of (suited) cards.
+struct SuitedCard
+{
   Rank rank;
   Suit suit;
 };
 
-// Equality comparison
-bool operator==(Card a, Card b);
-bool operator!=(Card a, Card b);
+struct JokerCard
+{
+  Color color;
+};
 
-// Ordering
-bool operator<(Card a, Card b);
-bool operator>(Card a, Card b);
-bool operator<=(Card a, Card b);
-bool operator>=(Card a, Card b);
+// This is the union
+union CardImpl
+{
+  SuitedCard sc;
+  JokerCard jc;
+};
 
-std::ostream& operator<<(std::ostream& os, Card c);
-std::ostream& operator<<(std::ostream& os, Rank r);
-std::ostream& operator<<(std::ostream& os, Suit s);
+// CardImpl c; // Default constructs c
+// c.sc = {Nine, Spades}; // sc is the active member of the union
+
+// SuitedCard sc = c.sc; // OK: reads the active member
+
+// JokerCard jc = c.sc; // Error: Reads an inactive member.
+
+// Discriminated union
+struct Card
+{
+    bool suited; // Discriminator
+    CardImpl impl;
+};
+
+// // Equality comparison
+// bool operator==(Card a, Card b);
+// bool operator!=(Card a, Card b);
+
+// // Ordering
+// bool operator<(Card a, Card b);
+// bool operator>(Card a, Card b);
+// bool operator<=(Card a, Card b);
+// bool operator>=(Card a, Card b);
+
+// std::ostream& operator<<(std::ostream& os, Card c);
+// std::ostream& operator<<(std::ostream& os, Rank r);
+// std::ostream& operator<<(std::ostream& os, Suit s);

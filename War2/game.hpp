@@ -10,6 +10,10 @@ struct Options
 };
 struct Game
 {
+	void step();
+	void run();
+
+
 	Options options;
 	Deck deck;
 	Player p1;
