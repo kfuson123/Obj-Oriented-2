@@ -1,7 +1,7 @@
 // Kyle Fuson
 // All rights reserved
-
 #include "card.hpp"
+#include "deck.hpp"
 
 #include <iostream>
 #include <iomanip>
@@ -11,23 +11,6 @@
 
 std::random_device rng;
 std::minstd_rand prng;
-
-void print(const std::vector<Card>& deck)
-{
-  // Range-base for loop.
-  int i = 1;
-  for (Card c : deck) 
-  {
-    std::cout << c << ' ';
-    if (i % 13 == 0) 
-    {
-      std::cout << '\n';
-      i = 0;
-    }
-    ++i;
-  }
-  std::cout << '\n';
-}
 
 
 // Deck of cards
@@ -64,21 +47,30 @@ int main()
 {
   prng.seed(rng());
 
+
   Deck d1 = make_standard_deck();
   Deck d2 = make_standard_deck();
-  Deck d3 = make_combinded_deck(d1, d2);
+  Deck d3 = make_combined_deck(d1, d2);
 
+  print(d3);
   shuffle(d3);
+  print(d3);
 
-  constexpr int runs = 10'000;
-  int total = 0;
-  for(int i = 0; i < runs; ++i);
-  {
-    Game g;
-    total += g.play();
-  }
+  // constexpr int runs = 10'000;
+  // int total = 0;
+  // for (int i = 0; i < runs; ++i) {
+  //   Game g;
+  //   total += g.play();
+  // }
+  // std::cout << double(total) / double(runs) << '\n';
 
-  std::cout << double(total) / double(runs) << '\n';
+#if 0
+
+
+
+
+
+
   // Game deck (not sure which or how many cards).
   // Contains 2*n cards.
   Deck deck;
@@ -92,11 +84,10 @@ int main()
   deal(deck, p2, deck.size());
 
   // Round-robin dealing.
-  while (!deck.empty())
-   {
+  while (!deck.empty()) {
     deal_one(deck, p1);
     deal_one(deck, p2);
-   }
+  }
 
   // Interesting alternative syntax.
   deal(deck, {p1, p2});
@@ -112,16 +103,14 @@ int main()
   Pile spoils;
 
   while (true) {
-    if (p1.empty()) 
-    {
+    if (p1.empty()) {
       if (p2.empty())
         std::cout << "TIE\n";
       else
         std::cout << "P2 WINS\n";
       break;
     }
-    else if (p2.empty()) 
-    {
+    else if (p2.empty()) {
       std::cout << "P1 WINS\n";
       break;
     }
@@ -132,16 +121,13 @@ int main()
     spoils.add(c1);
     spoils.add(c2);
 
-    if (c1 > c2) 
-    {
+    if (c1 > c2) {
       give(p1, spoils);
     }
-    else if (c2 > c1)
-    {
+    else if (c2 > c1) {
       give(p2, spoils);
     }
-    else 
-    {
+    else {
       // TODO: Need to check number of cards.
       // TODO: Number of sacrifices...
       // TODO: Negotiate sacrifices...
@@ -153,6 +139,6 @@ int main()
     }
     assert(spoils.empty());
   }
-
+#endif
   return 0;
 }
