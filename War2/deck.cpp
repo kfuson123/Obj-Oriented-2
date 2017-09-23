@@ -108,6 +108,7 @@ void deal_one(Deck& deck, Player &p)
 
     while(!deck.empty())
     {
-       // add(p);
+      int  p = p + 1;
+      deck.size() - 1;
     }
 }
