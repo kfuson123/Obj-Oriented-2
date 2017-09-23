@@ -6,7 +6,7 @@
 
 Deck make_standard_deck()
 {
-	Deck d 
+	Deck d
 	{
     	{Ace, Spades},
   	  	{Two, Spades},
@@ -81,7 +81,7 @@ Deck make_combined_deck(const Deck& d1, const Deck& d2)
 void shuffle(Deck& d)
 {
 	// Function local extern variable.
-	extren std::minstd_rand prng;
+	extern std::minstd_rand prng;
 
 	std::shuffle(d.begin(), d.end(), prng);
 }
@@ -90,10 +90,10 @@ void print(const Deck& deck)
 {
 	// Range-base for loop.
   int i = 1;
-  for (Card c : deck) 
+  for (Card c : deck)
   {
     std::cout << c << ' ';
-    if (i % 13 == 0) 
+    if (i % 13 == 0)
     {
       std::cout << '\n';
       i = 0;
@@ -101,4 +101,13 @@ void print(const Deck& deck)
     ++i;
   }
   std::cout << '\n';
+}
+
+void deal_one(Deck& deck, Player &p)
+{
+
+    while(!deck.empty())
+    {
+       // add(p);
+    }
 }

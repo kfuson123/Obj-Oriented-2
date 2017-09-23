@@ -2,6 +2,7 @@
 // All rights reserved
 #include "card.hpp"
 #include "deck.hpp"
+#include "game.hpp"
 
 #include <iostream>
 #include <iomanip>
@@ -64,25 +65,18 @@ int main()
   // }
   // std::cout << double(total) / double(runs) << '\n';
 
-#if 0
-
-
-
-
-
-
   // Game deck (not sure which or how many cards).
   // Contains 2*n cards.
   Deck deck;
-  deck.shuffle();
+//  deck.shuffle();
 
-  Player p1;
-  Player p2;
+  //Player p1;
+  //Player p2;
 
   // Split the deck.
-  deal(deck, p1, deck.size() / 2);
-  deal(deck, p2, deck.size());
-
+  //deal(deck, p1, deck.size() / 2);
+  //deal(deck, p2, deck.size());
+#if 0
   // Round-robin dealing.
   while (!deck.empty()) {
     deal_one(deck, p1);
@@ -90,7 +84,7 @@ int main()
   }
 
   // Interesting alternative syntax.
-  deal(deck, {p1, p2});
+  //deal(deck, {p1, p2});
 
   // Very object-oriented.
   //
@@ -135,9 +129,9 @@ int main()
       // WAR!
       spoils.add(p1.take());
       spoils.add(p2.take());
-      continue;      
+      continue;
     }
-    assert(spoils.empty());
+    std::assert(spoils.empty());
   }
 #endif
   return 0;

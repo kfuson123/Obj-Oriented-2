@@ -1,6 +1,5 @@
 #pragma once
-
-
+#include "deck.hpp"
 struct Options
 {
 	bool ace_high = true;
@@ -8,6 +7,19 @@ struct Options
 	bool negootiable_sacrifice = true;
 	int num_decks = 1;
 };
+
+struct Player
+{
+    Player ();
+
+};
+
+struct Pile
+{
+    void add();
+    bool empty();
+};
+
 struct Game
 {
 	void step();
@@ -21,3 +33,4 @@ struct Game
 	Pile pile;
 	int turn;
 };
+
