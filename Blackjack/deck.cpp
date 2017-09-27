@@ -85,8 +85,8 @@ void shuffle(Deck& d)
 
 	std::shuffle(d.begin(), d.end(), prng);
 }
-
-void print(const Deck& deck)
+template<class T>
+void print (T& deck)
 {
 	// Range-base for loop.
   int i = 1;
@@ -103,12 +103,10 @@ void print(const Deck& deck)
   std::cout << '\n';
 }
 
-void deal_one(Deck& deck, Player &p)
-{
+void deal_one(Deck& deck, Hand& player)
+{ 
+  Card c;
+  deck.pop_back(c);
+  player.push_back(c);
 
-    while(!deck.empty())
-    {
-      int  p = p + 1;
-      deck.size() - 1;
-    }
 }
