@@ -14,15 +14,26 @@
 std::random_device rng;
 std::minstd_rand prng;
 
+void Split(Deck& deck, Hand& player, Hand& split_hand)
+{
+  Card c;
+  player.pop_back(c);
+  split_hand.push_back(c);
+  deal_one(deck, player);
+  deal_one(deck, spilt_hand);
+}
+
 
 
 int main()
 {
   int option;
+  bool stand;
   prng.seed(rng());
   Deck deck;
   Hand player;
   Hand dealer;
+  Hand splitHand;
 
   Deck d1 = make_standard_deck();
   shuffle(deck);
@@ -41,6 +52,7 @@ int main()
     switch(option)
     {
       default:
+        stand = false;
         break;
       case '1':
         deal_one(deck, player);
@@ -49,10 +61,10 @@ int main()
         DD();
         break;
       case '3':
-        Spilt();
+        Split(deck, player, splitHand);
         break;
       case '4':
-        Stand();
+        stand = true;
         break;
     }
   }
@@ -61,6 +73,7 @@ int main()
     switch(option)
     {
       default:
+        stand = false;
         break;
       case '1':
         deal_one(deck, player);
@@ -69,7 +82,7 @@ int main()
         DD();
         break;
       case '3':
-        Stand();
+        stand = true;
         break;
     }
   }
