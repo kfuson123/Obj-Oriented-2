@@ -7,7 +7,7 @@
 
 enum Rank
 {
-  Ace,
+  Ace = 1,
   Two,
   Three,
   Four,
@@ -17,9 +17,9 @@ enum Rank
   Eight,
   Nine,
   Ten,
-  Jack,
-  Queen,
-  King,
+  Jack = 10,
+  Queen = 10,
+  King = 10,
 };
 
 enum Suit

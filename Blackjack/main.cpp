@@ -14,21 +14,23 @@
 std::random_device rng;
 std::minstd_rand prng;
 
-void Split(Deck& deck, Hand& player, Hand& split_hand)
+int score(Hand & hand)
 {
+  int sum = 0;
   Card c;
-  player.pop_back(c);
-  split_hand.push_back(c);
-  deal_one(deck, player);
-  deal_one(deck, spilt_hand);
+  Hand tmp_hand;
+
+  while(!hand.empty())
+  {
+      hand.pop(c);
+      c += c;
+  }
 }
-
-
 
 int main()
 {
   int option;
-  bool stand;
+  bool stand = false;
   prng.seed(rng());
   Deck deck;
   Hand player;
@@ -42,8 +44,10 @@ int main()
   deal_one(deck, dealer);
   deal_one(deck, player);
 
+  while(stand)
+  {
   std::cout << "Dealer's Hand: " << print(dealer) << std::endl;
-  std::cout << "Your hand: " << print(player) << std::endl;
+  std::cout << "Your hand: " << print(player) <<  << "Your total: " << sum(player) << std::endl;
 
   std::cout << "What would you like do to?" << std::endl;
   cin >> option;
@@ -77,6 +81,7 @@ int main()
         break;
       case '1':
         deal_one(deck, player);
+        sum();
         break;
       case '2':
         DD();
@@ -86,6 +91,9 @@ int main()
         break;
     }
   }
+  }
+
+  while(dealerSum)
 
   
   return 0;

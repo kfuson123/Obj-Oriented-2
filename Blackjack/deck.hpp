@@ -15,6 +15,9 @@ void shuffle(Deck& d);
 template<class T>
 void print(T& d);
 
+void deal_one(Deck& deck, Hand& player);
+
+
 // Very object oriented.
 // struct Deck
 // {
