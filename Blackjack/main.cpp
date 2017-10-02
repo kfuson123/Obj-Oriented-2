@@ -1,5 +1,4 @@
 // Kyle Fuson
-// OOP Practice 2
 #include <iostream>
 #include <vector>
 #include "Card.h"
