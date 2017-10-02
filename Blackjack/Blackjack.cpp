@@ -42,22 +42,6 @@ Blackjack::Blackjack()
 	shuffle(d);
 }
 
-Blackjack::Blackjack(int n)
-	: Number_of_Decks(n), Number_of_Cards(n * 52), d()
-{
-	d.reserve(Number_of_Cards);
-
-	for (int j = 0; j < Number_of_Decks; ++j) // creates n decks of cards to play with
-	{
-		for (int i = 0; i < 52; ++i)
-		{
-			d.push_back(static_cast<Rank>(i % 13), static_cast<Suit>(i / 13));
-		}
-	}
-	// shuffle deck
-	shuffle(d);
-}
-
 int Blackjack::evaluate_hand(Deck eval)
 {
 	int hand_score = 0;
