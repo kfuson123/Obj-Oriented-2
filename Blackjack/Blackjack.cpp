@@ -152,20 +152,7 @@ void Blackjack::run_game()
 		}
 		print_hand(dealer);
 		std::cout << " with a score of " << dealer_score << std::endl;
-		if (player.front().front().rank == player.front().back().rank)
-		{
-			std::cout << "It seems you have two cards of the same value. Would you like to split your hand? Y for Yes, any other input for No.";
-			std::cin >> ch;
-			std::cout << std::endl;
-			if (ch == 'Y' || ch == 'y')
-			{
-				Deck new_hand;
-				new_hand.push_back(player.front().back());
-				player.front().pop_back();
-				player.push_back(new_hand);
-			}
-		}
-
+		
 		// player turn
 		for (int i = 0; i < player.size(); ++i)
 		{
