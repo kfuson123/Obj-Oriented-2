@@ -2,6 +2,7 @@
 
 #include <list>
 
+
 void print_winner(int pscore, int dscore)
 {
 	std::cout << "Your final score: " << pscore << std::endl;
@@ -32,11 +33,10 @@ Blackjack::Blackjack()
 	:Number_of_Decks(1), Number_of_Cards(52), d()
 {
 	// reserve deck space, make a standard deck of cards
-	// jokers not needed in blackjack
 	d.reserve(52);
 	for (int i = 0; i < 52; ++i)
 	{
-		d.emplace_back(static_cast<Rank>(i % 13), static_cast<Suit>(i / 13));
+		d.push_back(static_cast<Rank>(i % 13), static_cast<Suit>(i / 13));
 	}
 	// shuffle deck
 	shuffle(d);
@@ -51,7 +51,7 @@ Blackjack::Blackjack(int n)
 	{
 		for (int i = 0; i < 52; ++i)
 		{
-			d.emplace_back(static_cast<Rank>(i % 13), static_cast<Suit>(i / 13));
+			d.push_back(static_cast<Rank>(i % 13), static_cast<Suit>(i / 13));
 		}
 	}
 	// shuffle deck
@@ -167,7 +167,7 @@ void Blackjack::run_game()
 		}
 
 		// player turn
-		for (unsigned int i = 0; i < player.size(); ++i)
+		for (int i = 0; i < player.size(); ++i)
 		{
 			bool hit = true;
 			int player_score = evaluate_hand(player[i]);
@@ -207,26 +207,5 @@ void Blackjack::run_game()
 			print_winner(evaluate_hand(player.back()), dealer_score);
 		}
 
-		// check to see if user wants to keep playing
-		std::cout << "Would you like to keep playing? Enter Y for Yes, anything else for No\n";
-		std::cin >> ch;
-		std::cout << std::endl << std::endl;
-		if (ch != 'Y' && ch != 'y') // quit game
-		{
-			keep_playing = false;
-		}
-		else // put cards back in deck, reshuffle
-		{
-			for (auto hand : player)
-			{
-				d.insert(d.end(), hand.begin(), hand.end());
-			}
-			//player.clear();
-			player[0].clear();
-			player.resize(1);
-			d.insert(d.end(), dealer.begin(), dealer.end());
-			dealer.clear();
-			shuffle(d);
-		}
 	}
 }
