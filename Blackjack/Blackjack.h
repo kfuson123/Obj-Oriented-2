@@ -10,7 +10,6 @@ struct Blackjack {
 
 	// constructors
 	Blackjack();
-	Blackjack(int);
 
 	// functions
 	int evaluate_hand(Deck); // checks score of given Hand
