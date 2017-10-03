@@ -34,7 +34,7 @@ Blackjack::Blackjack()
 {
 	// reserve deck space, make a standard deck of cards
 
-Deck d {
+ d {
      d.reserve(52);
     {Ace, Spades},
     {Two, Spades},
