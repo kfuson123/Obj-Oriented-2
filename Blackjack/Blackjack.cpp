@@ -36,7 +36,7 @@ Blackjack::Blackjack()
 	d.reserve(52);
 	for (int i = 0; i < 52; ++i)
 	{
-		d.push_back(static_cast<Rank>(i % 13), static_cast<Suit>(i / 13));
+		d.emplace_back(static_cast<Rank>(i % 13), static_cast<Suit>(i / 13));
 	}
 	// shuffle deck
 	shuffle(d);
@@ -177,6 +177,26 @@ void Blackjack::run_game()
 			std::cout << "For your other hand: \n";
 			print_winner(evaluate_hand(player.back()), dealer_score);
 		}
-
+		
+		std::cout << "Would you like to keep playing? Enter Y for Yes, anything else for No\n";
+		std::cin >> ch;
+		std::cout << std::endl << std::endl;
+		if (ch != 'Y' && ch != 'y') // quit game
+		{
+			keep_playing = false;
+		}
+		else // put cards back in deck, reshuffle
+		{
+			for (auto hand : player)
+			{
+				d.insert(d.end(), hand.begin(), hand.end());
+			}
+			//player.clear();
+			player[0].clear();
+			player.resize(1);
+			d.insert(d.end(), dealer.begin(), dealer.end());
+			dealer.clear();
+			shuffle(d);
+		}
 	}
 }
