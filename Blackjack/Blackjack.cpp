@@ -33,11 +33,67 @@ Blackjack::Blackjack()
 	:Number_of_Decks(1), Number_of_Cards(52), d()
 {
 	// reserve deck space, make a standard deck of cards
-	d.reserve(52);
-	for (int i = 0; i < 52; ++i)
-	{
-		d.emplace_back(static_cast<Rank>(i % 13), static_cast<Suit>(i / 13));
-	}
+
+Deck d {
+     d.reserve(52);
+    {Ace, Spades},
+    {Two, Spades},
+    {Three, Spades},
+    {Four, Spades},
+    {Five, Spades},
+    {Six, Spades},
+    {Seven, Spades},
+    {Eight, Spades},
+    {Nine, Spades},
+    {Ten, Spades},
+    {Jack, Spades},
+    {Queen, Spades},
+    {King, Spades},
+
+    {Ace, Clubs},
+    {Two, Clubs},
+    {Three, Clubs},
+    {Four, Clubs},
+    {Five, Clubs},
+    {Six, Clubs},
+    {Seven, Clubs},
+    {Eight, Clubs},
+    {Nine, Clubs},
+    {Ten, Clubs},
+    {Jack, Clubs},
+    {Queen, Clubs},
+    {King, Clubs},
+
+    {Ace, Hearts},
+    {Two, Hearts},
+    {Three, Hearts},
+    {Four, Hearts},
+    {Five, Hearts},
+    {Six, Hearts},
+    {Seven, Hearts},
+    {Eight, Hearts},
+    {Nine, Hearts},
+    {Ten, Hearts},
+    {Jack, Hearts},
+    {Queen, Hearts},
+    {King, Hearts},
+
+    {Ace, Diamonds},
+    {Two, Diamonds},
+    {Three, Diamonds},
+    {Four, Diamonds},
+    {Five, Diamonds},
+    {Six, Diamonds},
+    {Seven, Diamonds},
+    {Eight, Diamonds},
+    {Nine, Diamonds},
+    {Ten, Diamonds},
+    {Jack, Diamonds},
+    {Queen, Diamonds},
+    {King, Diamonds},
+  };
+  return d;
+
 	// shuffle deck
 	shuffle(d);
 }
@@ -124,8 +180,6 @@ void Blackjack::run_game()
 			d.pop_back();
 			dealer_score = evaluate_hand(dealer);
 		}
-		// print cards in dealer's hand and their score
-		std::cout << "Dealer has finalized their hand.\n";
 		if (dealer_score > 21)
 		{
 			std::cout << "Dealer has a bust, hand is ";
