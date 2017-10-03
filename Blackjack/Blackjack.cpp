@@ -130,11 +130,6 @@ void Blackjack::print_hand(Deck print_out)
 		{
 			std::cout << " and ";
 		}
-		std::cout << "a";
-		if (c.rank == Eight || c.rank == Ace)
-		{
-			std::cout << "n";
-		}
 		std::cout << " ";
 		c.print_card(); // actually prints the Rank and Suit of the card
 	}
