@@ -1,54 +1,44 @@
-<<<<<<< HEAD
-#pragma once
 #include "card.hpp"
 
-#if 0
 #include <iostream>
 
-bool
-operator==(Card a, Card b)
+bool operator==(Card a, Card b)
 {
-  return a.get_rank() == b.get_rank() &&
-         a.get_suit() == b.get_suit();
+  return a.rank == b.rank && a.suit == b.suit;
 }
 
-bool
-operator!=(Card a, Card b)
+bool operator!=(Card a, Card b)
 {
   return !(a == b);
 }
 
 
-bool
-operator<(Card a, Card b)
+bool operator<(Card a, Card b)
 {
-  if (a.get_suit() < b.get_suit())
+  if (a.suit < b.suit)
     return true;
-  if (b.get_suit() < a.get_suit())
+  if (b.suit < a.suit)
     return false;
-  return a.get_rank() < b.get_rank();
+  return a.rank < b.rank;
 }
 
-bool
-operator>(Card a, Card b)
+bool operator>(Card a, Card b)
 {
   return b < a;
 }
 
-bool
-operator<=(Card a, Card b)
+bool operator<=(Card a, Card b)
 {
   return !(b < a);
 }
 
-bool
-operator>=(Card a, Card b)
+bool operator>=(Card a, Card b)
 {
   return !(a < b);
 }
 
-std::ostream&
-operator<<(std::ostream& os, Rank r)
+
+std::ostream& operator<<(std::ostream& os, Rank r)
 {
   switch (r) {
     case Ace:
@@ -94,8 +84,7 @@ operator<<(std::ostream& os, Rank r)
   return os;
 }
 
-std::ostream&
-operator<<(std::ostream& os, Suit s)
+std::ostream& operator<<(std::ostream& os, Suit s)
 {
   switch (s) {
     case Hearts:
@@ -114,12 +103,7 @@ operator<<(std::ostream& os, Suit s)
   return os;
 }
 
-std::ostream& 
-operator<<(std::ostream& os, Card c)
+std::ostream&  operator<<(std::ostream& os, Card c)
 {
-  return os << c.get_rank() << c.get_suit();
+  return os << c.rank << c.suit;
 }
-#endif
-=======
-
->>>>>>> 79d66c9120d0ea908eba52c82e3cb01d4b73652a

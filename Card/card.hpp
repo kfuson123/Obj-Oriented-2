@@ -1,13 +1,10 @@
-<<<<<<< HEAD
-ma once
-
 #include <utility>
 
 #include <iosfwd>
 
-enum Rank
+enum Rank // An enumeration type
 {
-  Ace,
+  Ace, // An enumerator
   Two,
   Three,
   Four,
@@ -30,48 +27,14 @@ enum Suit
   Spades,
 };
 
-enum Color
-{
-  Black,
-  Red,
-};
-
-/// Represents the values of (suited) cards.
-struct SuitedCard
+// A playing card (in a standard deck) is a pair of rank and
+// suit (see enums above).
+struct Card
 {
   Rank rank;
   Suit suit;
 };
 
-struct JokerCard
-{
-  Color color;
-};
-
-
-// This is a union type.
-union CardImpl
-{
-  SuitedCard sc;
-  JokerCard jc;
-};
-
-enum CardKind {
-  Suited,
-  Joker
-};
-
-
-// Discriminated union.
-struct Card
-{
-  CardKind kind; // discriminator 
-  CardImpl impl;
-};
-
-
-
-#if 0
 // Equality comparison
 bool operator==(Card a, Card b);
 bool operator!=(Card a, Card b);
@@ -85,7 +48,3 @@ bool operator>=(Card a, Card b);
 std::ostream& operator<<(std::ostream& os, Card c);
 std::ostream& operator<<(std::ostream& os, Rank r);
 std::ostream& operator<<(std::ostream& os, Suit s);
-#endif
-=======
-
->>>>>>> 79d66c9120d0ea908eba52c82e3cb01d4b73652a
