@@ -36,17 +36,35 @@ enum Color
 // suit (see enums above).
 struct Card
 {
-  int 10;
 };
 
 struct Suited : Card
 {
-  Suited(Rank r, Suit s) : r(r) s(s) {}
+  Suited(Rank r) : r(r) {}
   Rank r;
-  Suit s;
+  // Suit s;
 };
 
-Suited s{0, Ace, Spades};
+
+struct Spades : Suited
+{
+  using Suited::Suited;
+};
+
+struct Clubs : Suited
+{
+
+};
+
+struct Hearts : Suited
+{
+
+};
+
+struct Diamonds : Suited
+{
+
+};
 
 struct Joker : Card
 {
@@ -54,4 +72,5 @@ struct Joker : Card
   Color c;
 
 };
+
 
