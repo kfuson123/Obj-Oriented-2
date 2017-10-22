@@ -1,10 +1,12 @@
-#include <utility>
+#pragma once
 
+#include <cassert>
 #include <iosfwd>
+#include <vector>
 
-enum Rank // An enumeration type
+enum Rank
 {
-  Ace, // An enumerator
+  Ace,
   Two,
   Three,
   Four,
@@ -16,61 +18,98 @@ enum Rank // An enumeration type
   Ten,
   Jack,
   Queen,
-  King,
+  King
 };
 
 enum Suit
 {
-  Hearts,
-  Diamonds,
-  Clubs,
-  Spades,
+ Spades,
+ Clubs,
+ Hearts,
+ Diamonds,
 };
 
 enum Color
 {
   Black,
   Red,
-}
-// A playing card (in a standard deck) is a pair of rank and
-// suit (see enums above).
+};
+
+// Represents the set of all cards.
 struct Card
 {
+  Card(int id)
+    : id(id)
+  { }
+
+  virtual ~Card() = default;
+
+  int id;
 };
 
-struct Suited : Card
+// A suited card IS-A card.
+//
+// (Card is a superclass, Suited is a subclass).
+struct Suited : Card // Suited is derived from Card.
 {
-  Suited(Rank r) : r(r) {}
-  Rank r;
-  // Suit s;
+   Suited(int id, Rank r)
+    : Card(id), // Explicitly call the base class constructor.
+      rank(r)
+  { }
+   virtual Rank get_rank() const { return this->rank;}
+   Rank rank;
 };
 
-
-struct Spades : Suited
+struct Spade : Suited
 {
-  using Suited::Suited;
+  Spade(int id, Rank r)
+    : Suited(id, r)
+  { }
 };
 
-struct Clubs : Suited
+struct Club : Suited
 {
-
+  Club(int id, Rank r)
+    : Suited(id, r)
+  { }
 };
 
-struct Hearts : Suited
+struct Heart : Suited
 {
-
+  Heart(int id, Rank r)
+    : Suited(id, r)
+  { }
 };
 
-struct Diamonds : Suited
+struct Diamond : Suited
 {
-
+  Diamond(int id, Rank r)
+    : Suited(id, r)
+  { }
 };
 
+
+// A joker (card) IS-A card.
 struct Joker : Card
 {
-  Joker(Color c) : c(c) { }
-  Color c;
+  Joker(int id, Color c)
+    : Card(id), color(c)
+  { }
 
+  Color color;
+};
+
+
+// A deck is a sequence of cards.
+struct Deck
+{
+  // A collection heterogeneous objects.
+  //
+  // NOT a heterogeneous container.
+  std::vector<Card*> cards;
+
+  // Don't do this...
+  // std::vector<Card&> cards2;
 };
 
 
