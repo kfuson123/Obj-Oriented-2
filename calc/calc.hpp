@@ -42,12 +42,25 @@ struct Expr
   // don't have to modify this class to add new values.
   virtual bool is_value() const {
     
+    // Converts this pointer into an Int pointer, if possible. If not,
+    // returns nullptr.
     const Int* p = dynamic_cast<const Int*>(this);
+    const Float* q = dynamic_cast<const Float*>(this);
 
-    return false;
+
+    return p || q;
   }
 
   virtual void to_java(std::ostream& os) const = 0;
+
+  //Creates a copy of this object. 
+  //Virtual constructor
+  virtual Expr* clone() const = 0;
+
+  bool operator==(const Expr* e1, const Expr* e2)
+  {
+
+  }
 
   // // As an alternative...
   // //
@@ -88,7 +101,14 @@ struct Int : Expr
   }
 
   bool is_value() const override { return true; }
-  
+
+  // Covariant return type. You can override an inherited virtual 
+  // function using a different return type, buy only if the new
+  // return type is derived from the original.
+  Int* clone() const override {
+    return new Int(*this);
+  }
+
   int val;
 };
 
@@ -106,6 +126,10 @@ struct Binary : Expr
   Binary(Expr* e1, Expr* e2)
     : e1(e1), e2(e2)
   { }
+
+  Binary(const Binary& that)
+    : e1(that.e1->clone()), e2(that.e2->clone())
+    { }
 
   ~Binary() override {
     delete e1;
@@ -130,6 +154,10 @@ struct Add : Binary
 {
   using Binary::Binary;
 
+  Add* clone() const override {
+    return new Int(*this);
+  }
+
   void print(std::ostream& os) const override {
     print_enclosed(os, e1);
     os << " + ";
@@ -148,11 +176,11 @@ struct Add : Binary
         return new Int(evaluate());
 
       // v1 + e2
-      return new Add(e1, e2->reduce());
+      return new Add(e1->clone(), e2->reduce());
     }
 
     // e1 + e2
-    return new Add(e1->reduce(), e2);
+    return new Add(e1->reduce(), e2->clone());
   }
 };
 
@@ -160,6 +188,10 @@ struct Add : Binary
 struct Sub : Binary
 {
   using Binary::Binary;
+
+  Sub* clone() const override {
+    return new Int(*this);
+  }
 
   void print(std::ostream& os) const override {
     print_enclosed(os, e1);
@@ -178,11 +210,11 @@ struct Sub : Binary
         return new Int(evaluate());
 
       // v1 - e2
-      return new Sub(e1, e2->reduce());
+      return new Sub(e1->clone(), e2->reduce());
     }
 
     // e1 - e2
-    return new Sub(e1->reduce(), e2);
+    return new Sub(e1->reduce(), e2->clone());
   }
 };
 
@@ -190,6 +222,10 @@ struct Sub : Binary
 struct Mul : Binary
 {
   using Binary::Binary;
+
+  Mul* clone() const override {
+    return new Int(*this);
+  }
 
   void print(std::ostream& os) const override {
     print_enclosed(os, e1);
@@ -208,11 +244,11 @@ struct Mul : Binary
         return new Int(evaluate());
 
       // v1 * e2
-      return new Mul(e1, e2->reduce());
+      return new Mul(e1->clone(), e2->reduce());
     }
 
     // e1 * e2
-    return new Mul(e1->reduce(), e2);
+    return new Mul(e1->reduce(), e2->clone());
   }
 };
 
@@ -221,6 +257,10 @@ struct Div : Binary
 {
   using Binary::Binary;
   
+  Div* clone() const override {
+    return new Int(*this);
+  }
+
   void print(std::ostream& os) const override {
     print_enclosed(os, e1);
     os << " / ";
@@ -242,11 +282,11 @@ struct Div : Binary
         return new Int(evaluate());
 
       // v1 / e2
-      return new Div(e1, e2->reduce());
+      return new Div(e1->clone(), e2->reduce());
     }
 
     // e1 / e2
-    return new Div(e1->reduce(), e2);
+    return new Div(e1->reduce(), e2->clone());
   }
 };
 
