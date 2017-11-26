@@ -9,29 +9,16 @@ operator<<(std::ostream& os, const Expr* e)
   return os;
 }
 
-int 
+int
 main() {
-
-  // 3 * (4 + 2)
+  // (5 / 2) * (4 + 2)
   Expr* e = new Mul(
-    new Int(3),
-    new Add(
-      new Int(4),
-      new Int(2)
-    )
+    new Div(new Int(5), new Int(2)),
+    new Add(new Int(4), new Int(2))
   );
 
   std::cout << e << " == " << e->evaluate() << '\n';
 
-  while (!e->is_value()) {
-    e = e->reduce();
-    std::cout << e << '\n';
-  }
-
-  // std::cout << e->reduce() << '\n';
-  // std::cout << e->reduce()->reduce() << '\n';
 
   delete e;
-
-  return 0;
 }
